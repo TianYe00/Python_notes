@@ -1,0 +1,483 @@
+{
+ "metadata": {
+  "name": "",
+  "signature": "sha256:3dfee8d61bfbad54b42f050b104d7b462cc27a211169402b59e1c56623e7ebf2"
+ },
+ "nbformat": 3,
+ "nbformat_minor": 0,
+ "worksheets": [
+  {
+   "cells": [
+    {
+     "cell_type": "heading",
+     "level": 1,
+     "metadata": {},
+     "source": [
+      "Notes for \"Python for Data Analysis\""
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "Firstly, prepare the environment we need throughout the following notes."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "import numpy as np\n",
+      "import pandas as pd\n",
+      "from pandas import Series, DataFrame\n",
+      "import matplotlib.pyplot as plt\n",
+      "# this allows plots to appear directly in the notebook\n",
+      "%matplotlib inline"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "heading",
+     "level": 2,
+     "metadata": {},
+     "source": [
+      "Whether built-in functions make a copy in basic packages, NumPy and pandas"
+     ]
+    },
+    {
+     "cell_type": "heading",
+     "level": 3,
+     "metadata": {},
+     "source": [
+      "Basic packages"
+     ]
+    },
+    {
+     "cell_type": "heading",
+     "level": 4,
+     "metadata": {},
+     "source": [
+      "Make a Copy:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": []
+    },
+    {
+     "cell_type": "heading",
+     "level": 4,
+     "metadata": {},
+     "source": [
+      "Make no copy:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.append`\uff1a appends a passed obj into the existing list."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "a = [1,2,3]\n",
+      "a.append(4)"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "heading",
+     "level": 3,
+     "metadata": {},
+     "source": [
+      "NumPy"
+     ]
+    },
+    {
+     "cell_type": "heading",
+     "level": 4,
+     "metadata": {},
+     "source": [
+      "Make a Copy:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `np.array`: produce array in np."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "a = [1, 2, 3]\n",
+      "anp = np.array(a)"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `astype`: produce a new array with a different type."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "float_anp = anp.astype(np.float64)"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `[].copy()`: make a copy of selected data"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* Boolean index"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "anp[anp > 2]"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `anp.sort`: sort the array increasingly by default."
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `permutation`: return a random permutation of a sequence."
+     ]
+    },
+    {
+     "cell_type": "heading",
+     "level": 4,
+     "metadata": {},
+     "source": [
+      "Make no copy:"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `[]`: index labels."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "bnp = anp[2]\n",
+      "bnp[0] = np.array([5])"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `T`: transpose."
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `np.random.shuffle`: randomly permute a sequence in place. Notably, It cannot be applied to pass value to other variables."
+     ]
+    },
+    {
+     "cell_type": "heading",
+     "level": 3,
+     "metadata": {},
+     "source": [
+      "pandas"
+     ]
+    },
+    {
+     "cell_type": "heading",
+     "level": 4,
+     "metadata": {},
+     "source": [
+      "Make a copy"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `Series`: generate 1D array in pandas."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "apd = Series(a)"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.reindex`: modify the index of Series or DataFrame, unless the new index is equivalent to the current one and copy=False."
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.sort_index`: sort the Series or DataFrame by row or column. By default it sort by row index, but can also by row or column values."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "frame.sort_index(by = 'b')"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.order`: to sort a Series by its values."
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.dropna`: drop NaN from Series or DataFrame."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "frame.dropna()\n",
+      "frame.dropna(thresh = 2)  #keep the rows contain a certain number of observations."
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.fillna`: fill in missing data."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "fram.fillna(0)\n",
+      "_=fram.fillna(0, inplace=True)  #replace original frame"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `unstack`: rearrange Series or DataFrame with hierarchical index into a DataFrame."
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `stack`: the inverse operation of unstack."
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.swaplevel`: interchange the levels."
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.sortlevel`: sort the specific level."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "frame1 = DataFrame(np.arange(12).reshape(4,3), index=[['a','a','b','b'],[1,2,1,2]], \n",
+      "                   columns=[['Ohio','Ohio','Colorado'],['Green','Red','Green']])\n",
+      "frame2 = frame1.swaplevel(0, 1).sortlevel(0)"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.set_index`: uses one or more columns of DataFrame as the index."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "frame3 = DataFrame({'a': range(7), 'b': range(7,0,-1),\n",
+      "                    'c': np.concatenate((np.repeat('one', 3), np.repeat('two', 4))),\n",
+      "                    'd': [0,1,2,0,1,2,3]})\n",
+      "frame4 = frame3.set_index(['c','d'])"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.swapaxes`: Interchange axes of DataFrame or pd.Penel."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "frame5 = frame.swapaxes(0,1)"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.to_frame`: convert Series or pd.Panel data to DataFrame."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "import pandas.io.data as web\n",
+      "pdata = pd.Panel(dict((stk, web.get_data_yahoo(stk))\n",
+      "                      for stk in ['AAPL', 'GOOG', 'MSFT', 'DELL']))\n",
+      "frame6 = pdata.to_frame"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "heading",
+     "level": 4,
+     "metadata": {},
+     "source": [
+      "Make no copy"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.index`: call index of an array in pandas."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "apdi = apd.index    #apdi cannot be modified"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.values`: call values of an array in pandas."
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `.ix`: make the DataFrame index system similar to numpy."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "frame = {'a': [1,2,3], 'b': [4,5,6]}\n",
+      "b = frame.ix[1]"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* `icol, irow`: select single column or row as a Series by integer location."
+     ]
+    }
+   ],
+   "metadata": {}
+  }
+ ]
+}
