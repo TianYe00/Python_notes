@@ -1,7 +1,7 @@
 {
  "metadata": {
   "name": "",
-  "signature": "sha256:7ba908e6bf138696467d517598741ed3e8cb07528d7d72682bbfb8a59ee68e42"
+  "signature": "sha256:3dfee8d61bfbad54b42f050b104d7b462cc27a211169402b59e1c56623e7ebf2"
  },
  "nbformat": 3,
  "nbformat_minor": 0,
@@ -29,7 +29,10 @@
      "input": [
       "import numpy as np\n",
       "import pandas as pd\n",
-      "from pandas import Series, DataFrame"
+      "from pandas import Series, DataFrame\n",
+      "import matplotlib.pyplot as plt\n",
+      "# this allows plots to appear directly in the notebook\n",
+      "%matplotlib inline"
      ],
      "language": "python",
      "metadata": {},
